@@ -40,13 +40,14 @@ export const App: React.FC = () => {
     const saved = localStorage.getItem('the_wedding_film_data');
     if (saved) {
       try {
-        const parsed = JSON.parse(saved);
+        const savedStr = saved.replaceAll('"/images/', '"./images/');
+        const parsed = JSON.parse(savedStr);
         if (parsed.brideName === 'Areeba' || !parsed.brideName) {
           parsed.brideName = 'Muniza';
           parsed.groomName = 'Muzamil';
           parsed.initials = 'M & M';
-          localStorage.setItem('the_wedding_film_data', JSON.stringify(parsed));
         }
+        localStorage.setItem('the_wedding_film_data', JSON.stringify(parsed));
         return parsed;
       } catch (e) {
         console.error('Failed to parse saved wedding data', e);

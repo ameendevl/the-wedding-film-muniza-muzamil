@@ -20,7 +20,7 @@ export const GuestMemoryWall: React.FC<GuestMemoryWallProps> = ({
   const [guestName, setGuestName] = useState<string>('');
   const [message, setMessage] = useState<string>('');
   const [selectedTag, setSelectedTag] = useState<'all' | EventId | 'family' | 'friends'>('all');
-  const [previewImage, setPreviewImage] = useState<string>('/images/mehndi.jpg');
+  const [previewImage, setPreviewImage] = useState<string>('./images/mehndi.jpg');
 
   const filteredMemories =
     activeFilter === 'all'

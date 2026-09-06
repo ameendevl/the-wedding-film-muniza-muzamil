@@ -7,7 +7,8 @@ export function getUniverseData(): CoupleUniverseData {
   try {
     const saved = localStorage.getItem(UNIVERSE_STORAGE_KEY);
     if (saved) {
-      return JSON.parse(saved);
+      const normalized = saved.replaceAll('"/images/', '"./images/');
+      return JSON.parse(normalized);
     }
   } catch (e) {
     console.warn('Failed to read universe data from localStorage:', e);
