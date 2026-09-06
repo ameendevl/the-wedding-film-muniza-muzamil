@@ -1,0 +1,158 @@
+@import "tailwindcss";
+
+@theme {
+  --font-serif: 'Cormorant Garamond', Georgia, serif;
+  --font-display: 'Playfair Display', 'Cormorant Garamond', serif;
+  --font-cinzel: 'Cinzel', 'Cinzel Decorative', serif;
+  --font-script: 'Alex Brush', cursive;
+  --font-sans: 'Plus Jakarta Sans', Inter, sans-serif;
+
+  --color-gold-50: #FBF8F0;
+  --color-gold-100: #F4EEDB;
+  --color-gold-200: #E7D9B2;
+  --color-gold-300: #D9C187;
+  --color-gold-400: #C9A96E;
+  --color-gold-500: #B89354;
+  --color-gold-600: #9E7A40;
+  --color-gold-700: #7E5F32;
+  --color-gold-800: #5C4425;
+  --color-gold-900: #3D2D1A;
+}
+
+:root {
+  /* Dynamic Palette Custom Properties (controlled by theme engine) */
+  --bg-primary: #0d0c0b;
+  --bg-secondary: #161412;
+  --bg-tertiary: #1f1c19;
+  --bg-surface: #221f1b;
+  --bg-paper: #f8f5ee;
+  
+  --text-primary: #f5f2eb;
+  --text-secondary: #b8b1a5;
+  --text-muted: #78736a;
+  --text-dark: #1e1c19;
+  
+  --accent: #c9a96e;
+  --accent-light: #e6d3a8;
+  --accent-dark: #8c6f37;
+  
+  --gold-border: rgba(201, 169, 110, 0.28);
+  --film-border: rgba(245, 242, 235, 0.08);
+
+  --radius-editorial: 2px;
+}
+
+/* Light / Warm Paper Mode Overrides */
+[data-theme-mood="light"] {
+  --bg-primary: #faf8f3;
+  --bg-secondary: #f2eee5;
+  --bg-tertiary: #e7e2d6;
+  --bg-surface: #ffffff;
+  --text-primary: #1f1c19;
+  --text-secondary: #5a544b;
+  --text-muted: #8c8477;
+  --gold-border: rgba(140, 111, 55, 0.28);
+  --film-border: rgba(31, 28, 25, 0.08);
+}
+
+/* Base styling */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  overflow-x: hidden;
+  transition: background-color 0.5s ease, color 0.5s ease;
+}
+
+/* Subtle Film Grain Noise */
+.film-grain {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 99;
+  opacity: 0.032;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-primary);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--gold-border);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent);
+}
+
+/* Gold Text Shimmer */
+.gold-text-shimmer {
+  background: linear-gradient(
+    90deg,
+    var(--accent-dark) 0%,
+    var(--accent-light) 50%,
+    var(--accent-dark) 100%
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shimmer 4s linear infinite;
+}
+
+@keyframes shimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+@keyframes slowZoom {
+  0% { transform: scale(1); }
+  100% { transform: scale(1.08); }
+}
+
+@keyframes floatGentle {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+
+.animate-slow-zoom {
+  animation: slowZoom 24s ease-in-out infinite alternate;
+}
+
+.animate-float-gentle {
+  animation: floatGentle 5s ease-in-out infinite;
+}
+
+/* Paper Texture for Tactile Invitation */
+.paper-texture {
+  background-color: #fcf9f2;
+  background-image: radial-gradient(#ebe3d1 0.75px, transparent 0.75px);
+  background-size: 10px 10px;
+  box-shadow: 
+    0 1px 3px rgba(0, 0, 0, 0.05),
+    0 25px 50px -12px rgba(0, 0, 0, 0.45),
+    inset 0 0 50px rgba(180, 160, 130, 0.09);
+}
+
+/* Embossed Gold Border */
+.embossed-border {
+  border: 1px solid rgba(201, 169, 110, 0.45);
+  outline: 1px solid rgba(201, 169, 110, 0.2);
+  outline-offset: 4px;
+}
+
+/* Hide scrollbar utility */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
