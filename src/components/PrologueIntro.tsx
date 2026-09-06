@@ -17,8 +17,8 @@ export const PrologueIntro: React.FC<PrologueIntroProps> = ({ wedding, onEnter }
   const [step, setStep] = useState<number>(0);
 
   useEffect(() => {
-    const timer1 = setTimeout(() => setStep(1), 2200);
-    const timer2 = setTimeout(() => setStep(2), 4800);
+    const timer1 = setTimeout(() => setStep(1), 1600);
+    const timer2 = setTimeout(() => setStep(2), 3400);
 
     return () => {
       clearTimeout(timer1);
@@ -34,12 +34,31 @@ export const PrologueIntro: React.FC<PrologueIntroProps> = ({ wedding, onEnter }
     onEnter();
   };
 
+  const handleAdvance = () => {
+    if (step < 2) {
+      setStep(2);
+    }
+  };
+
   return (
     <motion.div
       initial={{ opacity: 1 }}
       exit={{ opacity: 0, transition: { duration: 1.2, ease: [0.22, 1, 0.36, 1] } }}
-      className="fixed inset-0 z-50 flex items-center justify-center bg-[#0a0908] overflow-hidden select-none"
+      onClick={handleAdvance}
+      className="fixed inset-0 z-50 flex items-center justify-center bg-[#0a0908] overflow-hidden select-none cursor-pointer"
     >
+      {/* Skip button in top corner */}
+      <button
+        type="button"
+        onClick={(e) => {
+          e.stopPropagation();
+          handleEnterClick();
+        }}
+        className="absolute top-6 right-6 z-30 text-[10px] sm:text-[11px] font-sans tracking-[0.25em] uppercase text-[var(--text-secondary)] hover:text-[var(--accent)] border border-[var(--gold-border)]/40 hover:border-[var(--accent)] px-3.5 py-1.5 rounded-full transition-all duration-300 backdrop-blur-md bg-[#121110]/40 cursor-pointer"
+      >
+        Skip Intro &rarr;
+      </button>
+
       {/* Cinematic Background with Slow Parallax / Zoom */}
       <div className="absolute inset-0 overflow-hidden">
         <div
