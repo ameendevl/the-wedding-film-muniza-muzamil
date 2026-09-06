@@ -8,7 +8,21 @@ export function getUniverseData(): CoupleUniverseData {
     const saved = localStorage.getItem(UNIVERSE_STORAGE_KEY);
     if (saved) {
       const normalized = saved.replaceAll('"/images/', '"./images/');
-      return JSON.parse(normalized);
+      const parsed = JSON.parse(normalized);
+      if (parsed.weddingDate !== '2026-12-25') {
+        parsed.weddingDate = '2026-12-25';
+        parsed.twoHearts = INITIAL_UNIVERSE_DATA.twoHearts;
+        parsed.ourFirsts = INITIAL_UNIVERSE_DATA.ourFirsts;
+        parsed.whenWeAreOld = INITIAL_UNIVERSE_DATA.whenWeAreOld;
+        parsed.openWhenEnvelopes = INITIAL_UNIVERSE_DATA.openWhenEnvelopes;
+        parsed.weddingDay24Hours = INITIAL_UNIVERSE_DATA.weddingDay24Hours;
+        parsed.onePhotoTwoMemories = INITIAL_UNIVERSE_DATA.onePhotoTwoMemories;
+        parsed.memorySurprises = INITIAL_UNIVERSE_DATA.memorySurprises;
+        parsed.secretSurprises = INITIAL_UNIVERSE_DATA.secretSurprises;
+        parsed.personalization = INITIAL_UNIVERSE_DATA.personalization;
+        saveUniverseData(parsed);
+      }
+      return parsed;
     }
   } catch (e) {
     console.warn('Failed to read universe data from localStorage:', e);

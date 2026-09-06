@@ -47,6 +47,15 @@ export const App: React.FC = () => {
           parsed.groomName = 'Muzamil';
           parsed.initials = 'M & M';
         }
+        if (parsed.city !== 'Karachi' || parsed.weddingDate !== '2026-12-25') {
+          parsed.city = 'Karachi';
+          parsed.weddingDate = '2026-12-25';
+          parsed.weddingDisplayDate = '25 December 2026';
+          parsed.events = MUNIZA_MUZAMIL_WEDDING.events;
+          parsed.timeline = MUNIZA_MUZAMIL_WEDDING.timeline;
+          parsed.letterText = MUNIZA_MUZAMIL_WEDDING.letterText;
+          parsed.dna = MUNIZA_MUZAMIL_WEDDING.dna;
+        }
         localStorage.setItem('the_wedding_film_data', JSON.stringify(parsed));
         return parsed;
       } catch (e) {

@@ -87,7 +87,7 @@ export const ConversationalRSVP: React.FC<ConversationalRSVPProps> = ({
             CELEBRATE WITH US
           </h2>
           <p className="font-serif italic text-base text-[var(--text-secondary)]">
-            Please kindly confirm your presence by 1 December 2026
+            Please kindly confirm your presence by 10 December 2026
           </p>
           <div className="w-12 h-[1px] bg-[var(--gold-border)] mx-auto mt-4" />
         </div>
